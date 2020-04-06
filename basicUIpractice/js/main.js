@@ -1,4 +1,5 @@
 "use strict"; 
+// アコーディオン
 {
 	const accordion_wrapper = document.querySelectorAll('.accordion .wrapper');
 	const answer = document.querySelectorAll('.wrapper-txt_a');
@@ -15,5 +16,9 @@
 			target_answer.classList.toggle('active');
 		});
 	}
+}
 
+// スライダー
+{
+	
 }

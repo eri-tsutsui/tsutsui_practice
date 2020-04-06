@@ -67,7 +67,6 @@ fieldset, img {
 .accordion .container {
   width: 60%;
   margin: 0 auto;
-  transition: all 0.3s ease 0s;
 }
 
 .accordion .container .accordion-tit {
@@ -82,7 +81,6 @@ fieldset, img {
   border-radius: 1rem;
   padding: 2rem;
   user-select: none;
-  transition: 0.4s;
   cursor: pointer;
 }
 
@@ -93,10 +91,56 @@ fieldset, img {
   padding: 2rem;
   display: none;
   margin-top: 2rem;
-  transition: 0.4s;
 }
 
 .accordion .container .wrapper .wrapper-txt_a.active {
   display: block;
-  transition: 0.4s;
+}
+
+.slider {
+  padding: 5rem 0;
+}
+
+.slider .container {
+  margin: 0 auto;
+  width: 40%;
+}
+
+.slider .container .slider-tit {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.slider .container .btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider .container .images {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.slider .container .images .images-item {
+  display: none;
+}
+
+.slider .container .images .images-item.active {
+  display: block;
+}
+
+.slider .container .pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.slider .container .pagination .pagination-item {
+  border: 1px solid #000;
+  padding: 0.5rem;
+}
+
+.slider .container .pagination .pagination-item:not(:last-child) {
+  margin-right: 2rem;
 }
