@@ -1,0 +1,9 @@
+[2020-3-23 16:20:48] layer "01_06_139.jpg": Duplicate path: 01_06_139.jpg
+[2020-3-23 16:20:48] layer "01_019.jpg": Duplicate path: 01_019.jpg
+[2020-3-23 16:20:48] layer "03_051.jpg": Duplicate path: 03_051.jpg
+[2020-3-23 16:20:48] layer "02_031.jpg": Duplicate path: 02_031.jpg
+[2020-3-23 16:20:48] layer "02_031.jpg": Duplicate path: 02_031.jpg
+[2020-3-23 16:20:48] layer "01_019.jpg": Duplicate path: 01_019.jpg
+[2020-3-23 16:20:48] layer "01_019.jpg": Duplicate path: 01_019.jpg
+[2020-3-23 16:21:13] layer "01.jpg": Duplicate path: 01.jpg
+[2020-3-23 16:21:18] layer "01_06_139.jpg": Duplicate path: 01_06_139.jpg
