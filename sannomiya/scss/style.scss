@@ -1,0 +1,251 @@
+// scss
+@import "base/_base";
+@import "base/_reset";
+@import "mixin/_mixin";
+@import "setting/_variables";
+
+#modal.active {
+	padding: 3rem 0;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 300;
+	@include mq('sp') {
+		padding: 6rem 0;
+	}
+	#modal-close {
+		position: absolute;
+		right: 4rem;
+		top: 4rem;
+		padding: 1rem;
+		user-select: none;
+		z-index: 500;
+		&:hover {
+			opacity: 0.3;
+			cursor: pointer;
+		}
+		@include mq('sp') {
+			right: 1.2rem;
+			top: 1.2rem;
+			padding: 1rem;
+		}
+	}
+	.modal-image_wrapper {
+		height: 100%;
+		width: auto;
+		width: 100%;
+		margin: 0 auto;
+		position: relative;
+		#modal-image {
+			display: block;
+			margin: 0 auto;
+			height: 100%;
+			width: auto;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	#arrow-left, #arrow-right {
+		position: absolute;
+		top: 50%;
+		margin-top: -1.5rem;
+		&:hover {
+			opacity: 0.3;
+			cursor: pointer;
+		}
+		@include mq('sp') {
+			top: auto;
+		}
+	}
+	#arrow-left {
+		left: 4rem;
+		transform: rotate(90deg);
+		user-select: none;
+		padding: 1rem;
+		@include mq('sp') {
+			bottom: 1rem;
+			right: 3.5rem;
+			left: auto;
+		}
+	}
+	#arrow-right {
+		right: 4rem;
+		transform: rotate(-90deg);
+		user-select: none;
+		padding: 1rem;
+		@include mq('sp') {
+			right: 0.4rem;
+			bottom: 1rem;
+		}
+	}
+	#modal-txt {
+		position: absolute;
+		bottom: 2rem;
+		left: 2rem;
+		font-size: 1.2rem;
+		color: #ffffff;
+		@include mq('sp') {
+			font-size: 1rem;
+		}
+	}
+}
+
+
+.container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #ffffff;
+	.header {
+		padding-top: 3.8rem;
+		padding-bottom: 3.8rem;
+		padding-left: 2rem;
+		@include mq('sp') {
+			padding-top: 2.4rem;
+			padding-bottom: 2.4rem;
+		}
+		.box {
+			display: flex;
+			width: 100%;
+			.gnav {
+				.gnav-wrapper {
+					display: inline-block;
+					padding: 2.0rem;
+					svg {
+						width: 2.0rem;
+						height: 2.0rem;
+					}
+				}
+			}
+			.logo {
+				padding-left: 2.8rem;
+				.logo-txt_status {
+					svg {
+						height: 0.8rem;
+					}
+				}
+				.logo-txt_enName {
+					svg {
+						height: 1.2rem;
+					}
+				}
+				.logo-txt_jpName {
+					svg {
+						height: 1.2rem;
+					}
+				}
+			}
+		}
+		}
+	.main {
+		.main-list {
+			display: flex;
+			margin-bottom: 6rem;
+			padding-left: 2.0rem;
+			overflow: hidden;
+			width: 100vw;
+			@include mq('sp') {
+				margin-bottom: 4rem;
+			}
+			.main-item {
+				img {
+					vertical-align: bottom;
+					transition: all 0.2s ease 0s;
+					&:hover {
+						opacity: 0.5;
+						cursor: pointer;
+					}
+					@include mq('sp') {
+						height: 12rem;
+					}
+				}
+			}
+		}
+		.first {
+			img {
+				height: 19.9rem;
+				width: auto;
+				min-width: 0;
+			}
+		}
+		.second {
+			img {
+				height: 20.0rem;
+				width: auto;
+			}
+		}
+		.third {
+			img {
+				height: 14.7rem;
+				width: auto;
+			}
+		}
+		.forth {
+			img {
+				height: 19.9rem;
+				width: auto;
+				overflow: hidden;
+			}
+		}
+	}
+}
+
+.menu_top {
+	position: absolute;
+	left: 2.0rem;
+	bottom: 2.0rem;
+	z-index: 100;
+	position: fixed;
+	.menu-item {
+		margin-bottom: 0.6rem;
+		height: 1.6rem;
+		a {
+			display: block;
+			svg {
+				height: 1.5rem;
+				background-color: #fff;
+				padding: 0.3rem 0.5rem;
+				transition: all 0.3s ease 0s;
+				&:hover {
+					background-color: #00ffa2;
+				}
+			}
+		}
+	}
+}
+
+.menu_under {
+	display: none;
+	background-color: #000;
+	min-height: 100%;
+	width: 24.6rem;
+	z-index: -100;
+	padding-left: 5rem;
+	padding-top: 3.6rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	.menu-btn {
+		padding: 2rem;
+		position: relative;
+		right: 2rem;
+		display: inline-block;
+		margin-bottom: 3.6rem;
+		svg {
+			width: 2.0rem;
+			height: 2.0rem;
+		}
+	}
+	.menu-list {
+		.menu-item {
+			margin-bottom: 3.5rem;
+			a {
+				color: #ffffff;
+				display: inline-block;
+			}
+		}
+	}
+}
