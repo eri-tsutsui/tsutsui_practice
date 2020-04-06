@@ -61,37 +61,42 @@ fieldset, img {
 
 .accordion {
   background-color: gray;
-  padding: 50px 0;
+  padding: 5rem 0;
 }
 
 .accordion .container {
   width: 60%;
   margin: 0 auto;
+  transition: all 0.3s ease 0s;
 }
 
 .accordion .container .accordion-tit {
   color: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   font-weight: bold;
 }
 
 .accordion .container .wrapper {
   background-color: #fff;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  padding: 20px;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  padding: 2rem;
+  user-select: none;
+  transition: 0.4s;
   cursor: pointer;
 }
 
 .accordion .container .wrapper .wrapper-txt_a {
   background-color: #000;
   color: #fff;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 1rem;
+  padding: 2rem;
   display: none;
-  margin-top: 20px;
+  margin-top: 2rem;
+  transition: 0.4s;
 }
 
-.accordion .container .wrapper.active {
+.accordion .container .wrapper .wrapper-txt_a.active {
   display: block;
+  transition: 0.4s;
 }
