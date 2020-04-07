@@ -115,6 +115,16 @@ fieldset, img {
 .slider .container .btns {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2rem;
+  user-select: none;
+}
+
+.slider .container .btns .btns-txt {
+  cursor: pointer;
+}
+
+.slider .container .btns #prev {
+  visibility: hidden;
 }
 
 .slider .container .images {
@@ -124,23 +134,24 @@ fieldset, img {
 }
 
 .slider .container .images .images-item {
-  display: none;
+  background-color: yellow;
 }
 
-.slider .container .images .images-item.active {
-  display: block;
+.slider .container .images .images-item img {
+  vertical-align: bottom;
 }
 
-.slider .container .pagination {
+.slider .container .number {
   display: flex;
   justify-content: center;
 }
 
-.slider .container .pagination .pagination-item {
+.slider .container .number .number-item {
   border: 1px solid #000;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
-.slider .container .pagination .pagination-item:not(:last-child) {
+.slider .container .number .number-item:not(:last-child) {
   margin-right: 2rem;
 }

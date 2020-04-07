@@ -4,6 +4,7 @@
 @import "mixin/_mixin";
 @import "setting/_variables";
 
+// アコーディオン
 .accordion {
 	background-color: gray;
 	padding: 5rem 0;
@@ -37,6 +38,7 @@
 	}
 }
 
+// スライダー
 .slider {
 	padding: 5rem 0;
 	.container {
@@ -50,24 +52,37 @@
 		.btns {
 			display: flex;
 			justify-content: space-between;
+			margin-bottom: 2rem;
+			user-select: none;
+			.btns-txt {
+				cursor: pointer;
+			}
+			#prev {
+				visibility: hidden;
+			}
 		}
 		.images {
 			display: flex;
 			justify-content: center;
 			margin-bottom: 4rem;
 			.images-item {
-				display: none;
-				&.active {
-					display: block;
+				// display: none;
+				background-color: yellow;
+				img {
+					vertical-align: bottom;
 				}
+				// &.active {
+				// 	display: block;
+				// }
 			}
 		}
-		.pagination {
+		.number {
 			display: flex;
 			justify-content: center;
-			.pagination-item {
+			.number-item {
 				border: 1px solid #000;
 				padding: 0.5rem;
+				cursor: pointer;
 				&:not(:last-child) {
 					margin-right: 2rem;
 				}
