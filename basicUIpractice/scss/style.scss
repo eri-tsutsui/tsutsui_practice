@@ -22,6 +22,7 @@
 			border-radius: 1rem;
 			padding: 2rem;
 			user-select: none;
+			background-color: yellow;
 			cursor: pointer;
 			.wrapper-txt_a {
 				background-color: #000;
@@ -86,6 +87,43 @@
 				&:not(:last-child) {
 					margin-right: 2rem;
 				}
+			}
+		}
+	}
+}
+
+// モーダル
+.modal.active {
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 100;
+	top: 0;
+	left: 0;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	// overflow: hidden;
+	.img-wrapper {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+.gallery {
+	background-color: gray;
+	padding: 5rem 0;
+	h1 {
+		text-align: center;
+		color: #ffffff;
+		margin-bottom: 2rem;
+	}
+	.images {
+		display: flex;
+		.images-item {
+			width: 25%;
+			img {
+				width: 100%;
+				cursor: pointer;
 			}
 		}
 	}

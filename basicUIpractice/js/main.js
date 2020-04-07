@@ -7,9 +7,6 @@
 		accordion_wrapper[i].addEventListener('click', (e) => {
 			const target = event.target
 			const target_answer = target.nextElementSibling;
-
-			console.log(target);
-			console.log(target_answer);
 			
 			target_answer.classList.toggle('active');
 		});
@@ -18,7 +15,6 @@
 
 // スライダー
 {
-
   	let numbers = document.querySelectorAll('.number-item');
 	const btns = document.querySelectorAll('.btns-txt');
     const prev = document.getElementById('prev');
@@ -42,6 +38,7 @@
 			// それをtarget_imageのsrcに代入
 			target_image.setAttribute('src',get_src);
 
+			// ボタンの処理
 			if (target_image.getAttribute('src') === images[0]) {
 				prev.style.visibility = 'hidden';
 				next.style.visibility = 'visible';
@@ -53,9 +50,7 @@
 				next.style.visibility = 'visible';
 			}
 		});
-
 	}
-
 
 	next.addEventListener('click', () => {
 		// 表示されている画像のsrcを取得
@@ -69,7 +64,7 @@
 		// それをtarget_imageのsrc代入
 		target_image.setAttribute('src', new_src);
 
-		// アローの処理
+		// ボタンの処理
 		prev.style.visibility = 'visible';
 		next.style.visibilityy = 'visible';
 
@@ -78,7 +73,6 @@
 		} 
 
 	});
-
 
 	prev.addEventListener('click', () => {
 		// 表示されている画像のsrcを取得
@@ -92,7 +86,7 @@
 		// それをtarget_imageのsrc代入
 		target_image.setAttribute('src', new_src);
 
-		// アローの処理
+		// ボタンの処理
 		prev.style.visibility = 'visible';
 		next.style.visibilityy = 'visible';
 
