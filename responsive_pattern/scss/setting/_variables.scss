@@ -1,30 +1,34 @@
-@charset "UTF-8";
-// <サイト基本設定> ※reset.cssに記載していないもの
+//--------------------------------------------
+//
+//	変数を格納
+//
+//--------------------------------------------
 
-// 幅関係
-$layout-width-inner: 1080px; // インナー幅
+@charset "UTF-8";
 
 // ブレークポイント
-  //↑ <メモ> ブラウザ幅は以下を想定
-  // sp:768px~320pxまで
-  // tab:(インナー幅-1px)~768pxまで
-  // pc:インナーの幅まで
-  $breakpoints: (
-    "sp": "screen and (max-width: 767px)",
-    "tab": "screen and (max-width: #{$layout-width-inner - 1px})",
-    "pc": "screen and (min-width: #{$layout-width-inner})",
-  );
+$bq01: 320;
 
+// 切り替えの基準
+$base_width: 1000;
 
-// 色関係の設定
-  // サイトカラー
-  // フォントカラー
-  // リンクカラー
-  // 背景カラー
-  // ボーダー
+$bw: 10;
 
-
-//フォントサイズ
+$min-width: 321px;
+$max-width: 1000px;
 
 // フォント関係の設定
+    // フォントサイズ
+    $fz: 10;
+    // 書体 
+    $font: "ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS Pgothic",Osaka,sans-serif,Helvetica,Helvetica Neue,Arial,Verdana;
 
+// 色関係の設定
+    // サイトカラー
+    $color-main: #ffffff;
+    // フォントカラー
+    $color-text: #333333;
+    // リンクカラー
+    $color-link: #ffffff;
+    // 背景カラー
+    $color-bg: #ffffff;

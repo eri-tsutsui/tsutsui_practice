@@ -3,67 +3,38 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>基本UIの練習</title>
+	<title>レスポンシブ パターン練習</title>
 	<link rel="stylesheet" href="scss/style.css">
 </head>
 <body>
-	<!-- accordion -->
-	<section class="accordion">
-		<div class="container">
-			<h1 class="accordion-tit">Accrodion</h1>
-			<div class="wrapper">
-				<p class="wrapper-txt_q">Q 質問質問質問？</p>
-				<p class="wrapper-txt_a">A 回答回答回答回答回答回答回答回答回答回答</p>
-			</div>
-			<div class="wrapper">
-				<p class="wrapper-txt_q">Q 質問質問質問？</p>
-				<p class="wrapper-txt_a">A 回答回答回答回答回答回答回答回答回答回答</p>
-			</div>
-			<div class="wrapper">
-				<p class="wrapper-txt_q">Q 質問質問質問？</p>
-				<p class="wrapper-txt_a">A 回答回答回答回答回答回答回答回答回答回答</p>
-			</div>
-		</div>
-	</section><!-- /accordion -->
-
-	<!-- slider -->
-	<section class="slider">
-		<div class="container">
-			<h1 class="slider-tit">Slider</h1>
-			<div class="btns">
-				<p class="btns-txt" id="prev">←prev</p>
-				<p class="btns-txt" id="next">next→</p>
-			</div>
+	<div class="wrapper">
+		<h1 class="main-tit">LAYOUT PATTERN 01-03</h1>
+		<p class="txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<p class="txt">1000pxを基準</p>
+		<div class="container ratio1">
+			<h2 class="tit n1">ratio = 1,画面の幅に同期して拡大縮小</h2>
 			<ul class="images">
-				<li class="images-item"><img src="images/02_01.jpg" alt=""></li>
-				<!-- <li class="images-item"><img src="images/02_02.jpg" alt=""></li>
-				<li class="images-item"><img src="images/02_03.jpg" alt=""></li>
-				<li class="images-item"><img src="images/02_04.jpg" alt=""></li> -->
-			</ul>
-			<ul class="number">
-				<li class="number-item">1</li>
-				<li class="number-item">2</li>
-				<li class="number-item">3</li>
-				<li class="number-item">4</li>
+				<li class="images-item"><img src="images/01.063d1aa.jpg" alt=""></li>
+				<li class="images-item"><img src="images/02.c5bbe03.jpg" alt=""></li>
+				<li class="images-item"><img src="images/03.36c6470.jpg" alt=""></li>
 			</ul>
 		</div>
-	</section><!-- /slider -->
-
-	<!-- modal -->
-	<div class="modal">
-		<div class="img-wrapper"><img src="" alt=""></div>
+		<div class="container ratio2">
+			<h2 class="tit n2">ratio = 0.5,画面の幅に半分の割合で同期して拡大縮小</h2>
+			<ul class="images">
+				<li class="images-item"><img src="images/01.063d1aa.jpg" alt=""></li>
+				<li class="images-item"><img src="images/02.c5bbe03.jpg" alt=""></li>
+				<li class="images-item"><img src="images/03.36c6470.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div class="container ratio3">
+			<h2 class="tit n3">ratio = 0,固定</h2>
+			<ul class="images">
+				<li class="images-item"><img src="images/01.063d1aa.jpg" alt=""></li>
+				<li class="images-item"><img src="images/02.c5bbe03.jpg" alt=""></li>
+				<li class="images-item"><img src="images/03.36c6470.jpg" alt=""></li>
+			</ul>
+		</div>
 	</div>
-	<section class="gallery">
-		<h1 class="gallery-tit">Modal</h1>
-		<ul class="images">
-			<li class="images-item"><img src="images/02_01.jpg" alt=""></li>
-			<li class="images-item"><img src="images/02_02.jpg" alt=""></li>
-			<li class="images-item"><img src="images/02_03.jpg" alt=""></li>
-			<li class="images-item"><img src="images/02_04.jpg" alt=""></li>
-		</ul>
-	</section><!--/ modal -->
-
-	<!-- Custom js -->
-	<script src="js/main.js"></script><!-- /Custom js -->
 </body>
 </html>

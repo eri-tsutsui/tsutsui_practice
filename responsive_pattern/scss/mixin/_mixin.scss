@@ -1,6 +1,42 @@
+//--------------------------------------------
+//
+//	アニメーションやmixinや関数を格納
+//
+//--------------------------------------------
+
+// 可変フォントサイズ
+@function fs1($px) {
+  @return ($px / 10) * 1rem;
+}
+
+@function fs2($px) {
+  @return calc(#{($px / 10) * 1rem * 0.5} + #{$px * 0.5 + px});
+}
+
+// ↑参考
+// $a_ratio : 1 - $ratio;
+// calc(#{($px / $bw) * 1rem * $ratio} + #{$px * $a_ratio + px});
+
+@function fs3($px) {
+  @return $px + px;
+}
+
+
 // メディアクエリ
-@mixin mq($breakpoint: sp) {
-  @media #{map-get($breakpoints, $breakpoint)} {
-    @content;
-  }
+@mixin mq($min-width, $max-width) {
+    @media (min-width: $min-width) and (max-width: $max-width) {
+          @content;
+    }       
+}
+
+@mixin mq-min($min-width) {
+    @media (min-width: $min-width) {
+        @content;
+    }
+}
+
+@mixin mq-max($max-width) {
+    @media (max-width: $max-width) {
+        @content;
+    }
 }
