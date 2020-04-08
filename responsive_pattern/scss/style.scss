@@ -14,6 +14,14 @@ html {
 	background-color: $color-bg;
 }
 
+body {
+	font-size: 1.6rem;
+}
+
+.wrapper {
+	width: 100%;
+}
+
 .main-tit, .tit, .txt {
 	margin: 3rem;
 }
@@ -41,7 +49,7 @@ html {
 .n2 {
 	font-size: 3rem;
 	@include mq(321px, 1000px) {
-		font-size: fs2(30);
+		font-size: fs2(30, 0.5);
 	}
 }
 
@@ -52,21 +60,36 @@ html {
 	}
 }
 
-.images {
-	display: flex;
-	.images-item {
-		width: calc(100% / 3);
-		img {
+.container {
+	width: 100%;
+	.images {
+		display: flex;
+		&.ratio1 {
 			width: 100%;
+			.images-item {
+				width: calc(100% / 3);
+				img {
+					width: 100%;
+				}
+			}
 		}
-	}
-	&.ratio1 {
-		width: fs1(1000);
-	}
-	&.ratio2 {
-		width: fs2(1000);
-	}
-	&.ratio3 {
-		width: fs3(1000);
+		&.ratio2 {
+			width: fs2(1000, 0.5);
+			.images-item {
+				width: calc(100% / 3);
+				img {
+					width: 100%;
+				}
+			}
+		}
+		&.ratio3 {
+			width: fs3(1000);
+			.images-item {
+				width: calc(100% / 3);
+				img {
+					width: 100%;
+				}
+			}
+		}
 	}
 }

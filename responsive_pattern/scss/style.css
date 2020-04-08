@@ -54,6 +54,14 @@ html {
   }
 }
 
+body {
+  font-size: 1.6rem;
+}
+
+.wrapper {
+  width: 100%;
+}
+
 .main-tit, .tit, .txt {
   margin: 3rem;
 }
@@ -101,26 +109,46 @@ html {
   }
 }
 
-.images {
-  display: flex;
-}
-
-.images .images-item {
-  width: calc(100% / 3);
-}
-
-.images .images-item img {
+.container {
   width: 100%;
 }
 
-.images.ratio1 {
-  width: 100rem;
+.container .images {
+  display: flex;
 }
 
-.images.ratio2 {
+.container .images.ratio1 {
+  width: 100%;
+}
+
+.container .images.ratio1 .images-item {
+  width: calc(100% / 3);
+}
+
+.container .images.ratio1 .images-item img {
+  width: 100%;
+}
+
+.container .images.ratio2 {
   width: calc(50rem + 500px);
 }
 
-.images.ratio3 {
+.container .images.ratio2 .images-item {
+  width: calc(100% / 3);
+}
+
+.container .images.ratio2 .images-item img {
+  width: 100%;
+}
+
+.container .images.ratio3 {
   width: 1000px;
+}
+
+.container .images.ratio3 .images-item {
+  width: calc(100% / 3);
+}
+
+.container .images.ratio3 .images-item img {
+  width: 100%;
 }
