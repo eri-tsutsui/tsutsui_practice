@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+/*
+ * Slideshow
+ */
+.slideshow {
+    overflow: hidden;
+    position: relative;
+    min-width: 960px;
+    height: 465px;
+}
+
+.slideshow img {
+    /* display: none; */
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -800px;
+    transition: opacity 3s;  /* 追記 */
+}
+
+/* JavsScript 無効時 */
+.no-js .slideshow img:first-child {
+    display: inline;
+}
