@@ -1,0 +1,75 @@
+//スライダーの付加機能
+ナビゲーション
+オートプレイ
+インジケーター
+ポーズ
+
+//スライダーの考え方
+1.画像を横並べにし、横にずらすことで表示する
+横並べはleft 0, -100%, -200%, -300%で調整
+
+2.インジケーターを作成
+インジケーターはjs作成
+スライドが増えた時ややこしくならない
+index.htmlも余計なタグがなくすっきり
+
+3.インデックス番号とスライドを紐付ける（goToSlide）
+・スライドの変更
+・インジゲーターの色の変更
+・ナビの非表示
+
+4.ナビをクリックした時の処理
+インデックス番号を取得
+goToslide
+
+5.インジゲーターをクリックした時の処理
+インデックス番号を取得
+goToslide
+
+6.オートプレイの処理
+
+
+
+//ポイント
+1.空の入れ物を先につくておき、後ほどコンテンツを挿入する
+let Anchors = '';
+Anchors += '<a href="#">' + (i + 1) + '</a>';
+
+2.空のタグに挿入
+親要素.insertAdjacentHTML('挿入位置, 挿入する文字列);
+挿入位置：beforebegin/afterbegin/beforeend/afterend
+
+3.インデックス番号の取得
+const index = Array.prototype.indexOf.call(indicatorAnchors, target);
+
+4.setInterval(関数, 何秒ごと)
+関数そのままつっこんでもok
+関数にTimerという名前をつける
+clearInterval(関数名)でsetIntervalを中止することができる
+
+//疑問
+①
+let Anchors = '';
+
+for (let i = 0; i < length; i ++) {
+	slides[i].style.left = '-100% * i';
+	Anchors = '<a href="#">' + (i + 1) + '</a>';
+}
+console.log(Anchors);
+とした時
+<a href="#">4</a>
+とされる
+
+が
+
+for (let i = 0; i < length; i ++) {
+	slides[i].style.left = '-100% * i';
+	Anchors = '<a href="#">' + (i + 1) + '</a>';
+}
+console.log(Anchors);
+とした時
+<a href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a>
+と出力される
+
+この違いは何？
+

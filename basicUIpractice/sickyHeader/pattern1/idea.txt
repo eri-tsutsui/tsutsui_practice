@@ -1,0 +1,32 @@
+//スティッキーヘッダーの考え方
+ヘッダーとトップまでの距離を、スクロール量がその距離をうわまった時に.stickyクラスを付与する
+
+//ポイント
+1.ビューポートにおける距離
+const rect = element.getBoundingClientRect();
+→left, top, right, bottom, x, y, width, heightを取得
+rect.top
+rect.left
+rect.height
+rect.width
+等で取得
+
+https://developer.mozilla.org/ja/docs/Web/API/Element/getBoundingClientRect
+
+2.スクロール量の取得
+const scrollY = window.scrollY;
+
+3.window.scrollYとrect.topの違い
+window.scrollはページトップからのスクロール量
+rect.topはビューポートにおけるページトップからの距離
+これら2つを足し合わせることにデフォルト値を取得することができる
+
+https://lab.syncer.jp/Web/JavaScript/Snippet/10/
+
+
+4.addEventlistnerにおいて、関数を直接書かなくてもok
+window.addEventListener('scroll', onScrollHandler);
+
+
+
+
