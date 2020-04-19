@@ -16,10 +16,6 @@ body {
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
 	position: absolute;
 	width: 100%;
-	&.sticky {
-		position: fixed;
-		top: 0;
-	}
 	.inner {
 		max-width: 960px;
 		width: 100%;
@@ -34,6 +30,38 @@ body {
 			padding-left: 20px;
 			height: 65px;
 			line-height: 65px;
+		}
+	}
+}
+
+.header-clone {
+	top: -35px;
+	width: 100%;
+	background-color: #000;
+	transition: top 0.25s;
+	position: fixed;
+	.inner {
+		max-width: 960px;
+		width: 100%;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		height: 35px;
+		.header-logo {
+			height: 100%;
+			img {
+				height: 100%;
+			}
+		}
+		.menu {
+			display: flex;
+			.menu-item {
+				color: #fff;
+				padding-right: 20px;
+				padding-left: 20px;
+				height: 35px;
+				line-height: 35px;
+			}
 		}
 	}
 }

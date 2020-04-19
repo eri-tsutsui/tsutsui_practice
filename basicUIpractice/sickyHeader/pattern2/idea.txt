@@ -1,32 +1,37 @@
 //スティッキーヘッダーの考え方
-ヘッダーとトップまでの距離を、スクロール量がその距離をうわまった時に.stickyクラスを付与する
+・変更後のヘッダーは-35pxで隠しておく
+・ヘッダークローンはjsで作成する（必須なのか不明）
 
 //ポイント
-1.ビューポートにおける距離
-const rect = element.getBoundingClientRect();
-→left, top, right, bottom, x, y, width, heightを取得
-rect.top
-rect.left
-rect.height
-rect.width
-等で取得
+1.ヘッダーをヌルッと出す処理
+transition: top 0.25s;
 
-https://developer.mozilla.org/ja/docs/Web/API/Element/getBoundingClientRect
+2.子要素を取得
+const 変数 = header.children[0]
 
-2.スクロール量の取得
-const scrollY = window.scrollY;
+3.複製
+const 変数 = element.createElement('div');
 
-3.window.scrollYとrect.topの違い
-window.scrollはページトップからのスクロール量
-rect.topはビューポートにおけるページトップからの距離
-これら2つを足し合わせることにデフォルト値を取得することができる
+4.要素の挿入
+親ノード.appendChild(子ノード);
+ex)親要素にheaderChildを入れたい
+親要素.appendChild('headerChild');
+ex)bodyにheaderCloneを挿入したい
+body.appendChild('headerClone');
 
-https://lab.syncer.jp/Web/JavaScript/Snippet/10/
+5.要素挿入系の違い
+・appendChild
+(現在のタグに挿入するのではなく)新しいタグを作成してHTMLに挿入する場合
 
+・innerHTML
+HTMLの別のタグに新しいタグまたはテキストを挿入できますが、追加する代わりにそのタグの現在のコンテンツを置き換え
 
-4.addEventlistnerにおいて、関数を直接書かなくてもok
-window.addEventListener('scroll', onScrollHandler);
+・insertAdjacentHTML
+置き換えないで、挿入したい場合。新しい要素(beforebegin、afterbegin、beforeend、afterend)を挿入する場所を管理できます。
 
+https://ja.coder.work/so/javascript/611220
 
-
+//疑問
+変数定義できるものとできないものの違い
+処理を何個くっつけれるか
 

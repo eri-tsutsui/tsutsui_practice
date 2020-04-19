@@ -24,15 +24,35 @@
 			user-select: none;
 			background-color: yellow;
 			cursor: pointer;
+			// p {
+			// 	pointer-events: none;
+			// }
 			.wrapper-txt_a {
+				// background-color: #000;
+				// color: #fff;
+				// border-radius: 1rem;
+				// padding: 0rem 2rem;
+				// // display: none;
+				// margin-top: 0;
+				// line-height: 0;
+				// transition: line-height 0.3s ease-in-out,
+				// padding 0.3s ease-in-out,
+				// margin-top 0.3s ease-in-out;
 				background-color: #000;
 				color: #fff;
-				border-radius: 1rem;
-				padding: 2rem;
-				display: none;
-				margin-top: 2rem;
+				/* display: none; */
+				overflow: hidden;
+				padding: 0rem 2rem;
+				line-height: 0;
+				margin-top: 0;
+				transition: line-height 0.3s ease-in-out,
+				padding 0.3s ease-in-out,
+				margin-top 0.3s ease-in-out;
 				&.active {
-					display: block;
+					line-height: 1.5em;
+					border-radius: 1rem;
+					margin-top: 2rem;
+					padding: 2rem;
 				}
 			}
 		}
