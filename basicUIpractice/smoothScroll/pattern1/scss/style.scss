@@ -5,38 +5,6 @@
 @import "setting/_variables";
 
 // スライダー
-body {
-	background-color: #cccccc;
-	padding-top: 240px;
-}
-
-#header {
-	background-color: #fff;
-	height: 65px;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
-	position: absolute;
-	width: 100%;
-	&.sticky {
-		position: fixed;
-		top: 0;
-	}
-	.inner {
-		max-width: 960px;
-		width: 100%;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-between;
-	}
-	.menu {
-		display: flex;
-		.menu-item {
-			padding-right: 20px;
-			padding-left: 20px;
-			height: 65px;
-			line-height: 65px;
-		}
-	}
-}
 
 // content
 .content {
@@ -45,5 +13,23 @@ body {
 		width: 100%;
 		margin: 0 auto;
 		padding-top: 100px;
+		.content-txt {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.footer {
+	height: 50px;
+	width: 100%;
+	background-color: #ccc;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	#arrow {
+		display: inline-block;
+		transform: rotate(180deg);
+		cursor: pointer;
 	}
 }
