@@ -1,0 +1,20 @@
+//タイプライターの考え方
+・1文字ずつ分解し、setTimeoutを使って時間差で表示するようにする
+・時間はスピードをインデックス番号でずらす
+
+//ポイント
+1.1文字ずつ分解する
+let letters = ’JavaScript'.split(''); 
+// ['J', 'a', 'v', 'a' ,'S', 'c', 'r', 'i', 'p', 't']
+
+2.setIntervalとsetTimeoutの違い
+setInterval : 一定時間ごとに特定の処理を繰り返す
+setTimeout : 一定時間後に特定の処理を一度だけ行う
+
+3.forEachの引数
+array.forEach( function( value, index, array ) {
+  // 繰り返し処理を書く
+});
+
+
+

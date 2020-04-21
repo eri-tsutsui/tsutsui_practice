@@ -1,0 +1,23 @@
+// scss
+@import "base/_base";
+@import "base/_reset";
+@import "mixin/_mixin";
+@import "setting/_variables";
+
+#typewriter {
+	&::after {
+		content: '|';
+		animation-name: blink;
+		animation-duration: 1s;
+		animation-iteration-count: infinite;
+		@keyframes blink {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+	}
+}
+
