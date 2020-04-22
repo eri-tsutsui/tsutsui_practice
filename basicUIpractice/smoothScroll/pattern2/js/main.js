@@ -1,45 +1,30 @@
 'use strict';
 {
-	const tabButtons = document.querySelectorAll('.menu-item a');
-	const works = document.querySelectorAll('.work');
-
-	//-------------------------------------------------------------
-	// デフォルト設定
-	//-------------------------------------------------------------
-	// 1枚目の写真とタブがactive状態にする
-	works[0].classList.add('active');
-	tabButtons[0].classList.add('active');
-
-	//-------------------------------------------------------------
-	// クリックした時の動作
-	//-------------------------------------------------------------
-
-	tabButtons.forEach(clickedItem => {
-		// クリックした要素を取得
-		clickedItem.addEventListener('click', e => {
+	const btns = document.querySelectorAll('.menu-item a');
+	const back_btn = document.getElementById('backbtn');
+	
+	btns.forEach(btn => {
+		btn.addEventListener('click', e => {
 			e.preventDefault();
-			
-			// 全てのタブメニューからactiveクラスをとる
-			tabButtons.forEach(tabButton => {
-				tabButton.classList.remove('active');
+			const href = btn.getAttribute('href');
+			const target_work = document.querySelector(href);
+			const rect = target_work.getBoundingClientRect();
+			const rectTop = rect.top;
+
+			window.scrollTo ({
+				top: rectTop,
+				behavior: 'smooth'
 			});
+		});
+	});
 
-			// クリックしたタブにactiveクラスを付与
-			clickedItem.classList.add('active');
+	back_btn.addEventListener('click', e => {
+		e.preventDefault();
 
-			// 全てのパネルからactiveクラスをとる
-			works.forEach(work => {
-				work.classList.remove('active');
-			});
-
-			// クリックしたアイテムのhrefを取得し、それを元に紐づくパネルを取得
-			const idLink = clickedItem.getAttribute('href');
-			const showWork = document.querySelector(idLink);
-
-			// 紐づくパネルにactiveクラスを付与
-			showWork.classList.add('active');
-
-		})
+		window.scrollTo ({
+			top: 0,
+			behavior: 'smooth'
+		});
 	});
 
 }
