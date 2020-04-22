@@ -2,271 +2,136 @@
 {
 
 	// 要素の取得
-	let images = document.querySelectorAll('.main-item img');
 	const modal = document.getElementById('modal');
-	const modal_close = document.getElementById('modal-close');
-	let modal_image = document.getElementById('modal-image');
-	const arrow_left = document.getElementById('arrow-left');
-	const arrow_right = document.getElementById('arrow-right');
-	const modal_txt = document.getElementById('modal-txt');
+	const modalClose = document.getElementById('modal-close');
+	const prev = document.getElementById('arrow-left');
+	const next = document.getElementById('arrow-right');
+	const images = document.querySelectorAll('.main-item img');
+	let modalTxt = document.getElementById('modal-txt');
+	let modalImg = document.getElementById('modalImage');
+	let currentIndex = 0;
+	let timer;		
 
+	for (let i = 0; i < images.length; i ++) {
+		images[i].addEventListener('click', e => {
 
-	// ------------------------------------
-	//
-	// 以下、モーダル
-	//
-	// ------------------------------------
-	
-	// 写真とテキストを動的に変更する処理
-	for(let i = 0; i < images.length; i ++) {
-
-		// 写真をクリックした時に
-		images[i].addEventListener('click', (e) => {	
-
-			// modalにactiveクラスをつける
+			//-----------------------------------------------------------------------
+			// モーダルを表示
+			//-----------------------------------------------------------------------
 			modal.classList.add('active');
-			
-			// クリックした画像 + そのsrcとdata-textを取得する
-			let target_img = event.target;
-			let target_src = target_img.getAttribute('src');
-	        const target_text = target_img.getAttribute('data-text');
 
-			// #imgに取得したsrcを追記
-			// #modal-txtに取得したdata-textの値を代入する
-			modal_image.setAttribute('src', target_src); 
-			modal_txt.textContent = target_text; 
+			//-----------------------------------------------------------------------
+			// 関数定義
+			//-----------------------------------------------------------------------
 
-			// ------------------------------------------------
-			//
-			// 以下、ウインドウ幅に応じて画像の表示サイズを変更
-			//
-			// ------------------------------------------------
+			// showImg()定義
+			let target = e.target;
+			let targetSrc = target.getAttribute('src');
+			let targetTxt = target.getAttribute('data-text');
+			let index = Array.prototype.indexOf.call(images, target);
+			let targetWidth = target.clientWidth;
+			let targetHeight = target.clientHeight;
+			let targetRatio = targetWidth / targetHeight; 
 
-			//要素を取得
-			let w = window.innerWidth;
-			let h = window.innerHeight;
-			let target_width = modal_image.clientWidth;
-			let target_height = modal_image.clientHeight;
-
-			// ウインドウ幅に応じて画像の表示サイズを変える
-			if (target_width >= w && target_height < h) {
-				modal_image.style.width = '100%';
-				modal_image.style.height = 'auto';
-				modal_image.style.maxWidth = target_width;
-			} else if (target_width >= w && target_height > h) {
-				modal_image.style.width = 'auto';
-				modal_image.style.height = '100%';
-				modal_image.style.maxWidth = 'initial';
+			function showImg () {
+				// インデックス番号を更新して表示する画像を変更する処理
+				currentIndex = index;
+				target = images[index];
+				targetTxt = target.getAttribute('data-text');
+				targetSrc = target.getAttribute('src');
+				modalImg.setAttribute('src', targetSrc);
+				modalTxt.textContent = targetTxt;
+				targetWidth = target.clientWidth;
+				targetHeight = target.clientHeight;
+				targetRatio = targetWidth / targetHeight;
+				// 画像とウィンドウ幅のアスペクト比を比べ、画像の大きさの処理を場合わけ
+				changeSize();
+				// 最初と最後の画像が表示されているときアローを消す処理
+				updateNav();
 			}
 
-			// ----------------------------------------------------------
-			//
-			// 以下、ブラウザ幅を変更した時、画像の幅をリアルタイムで変更	
-			//
-			// -----------------------------------------------------------
+			// changeSize()定義
+			let windowWidth = window.innerWidth;
+			let windowHeight = window.innerHeight;
+			let windowRatio = windowWidth / windowHeight;
 
-			// ウインドウ幅を変更した時、画像の幅をリアルタイムで変更する処理
-			let timer = false;			
+			function changeSize () {
+				// 横長写真の場合
+				if (targetRatio > 1 && targetRatio > windowRatio) {
+					modalImg.style.width = '100%';
+					modalImg.style.height = 'auto';
+				} else if (targetRatio > 1 && targetRatio < windowRatio) {
+					modalImg.style.width = 'auto';
+					modalImg.style.height = '100%';
+					modalImg.style.maxWidth = 'initial';
+				}
+				// 縦長写真の場合
+				if (targetRatio < 1 && targetRatio > windowRatio) {
+					modalImg.style.width = '100%';
+					modalImg.style.height = 'auto';
+				} else if (targetRatio < 1 && targetRatio < windowRatio) {
+					modalImg.style.width = 'auto';
+					modalImg.style.height = '100%';
+					modalImg.style.maxWidth = 'initial';
+				}
+			}
 
-			// ウインドウ幅を変更した時に
+			// updateNav()定義
+			function updateNav () {
+				if (currentIndex === 0) {
+					prev.classList.add('disable');
+				} else {
+					prev.classList.remove('disable');
+				}
+				if ( currentIndex === images.length - 1) {
+					next.classList.add('disable');
+				} else {
+					next.classList.remove('disable');
+				}
+
+			}
+
+			//-----------------------------------------------------------------------
+			// 関数実行
+			//-----------------------------------------------------------------------
+
+			// モーダルに写真を表示
+			showImg();
+
+			// ナビで写真を切り替え
+			prev.addEventListener('click', () => {
+				index = index - 1;
+				showImg();
+			});
+			next.addEventListener('click', () => {
+				index = index + 1;
+				showImg();
+			});
+
+			// ウィンドウをリサイズした時のレスポンシブ対応
 			window.addEventListener('resize',() => {
 
-				if (timer !== false) {
-					clearTimeout(timer);
-				}
+				windowWidth = window.innerWidth;
+				windowHeight = window.innerHeight;
+				windowRatio = windowWidth / windowHeight;
 
-				// 100ミリ秒後に画像サイズを変更
-				timer = setTimeout(() => {
+				clearTimeout(timer);
 				
-				w = window.innerWidth;
-				h = window.innerHeight;
-				target_width = modal_image.clientWidth;
-				target_height = modal_image.clientHeight;
-
-				if (target_width >= w && target_height < h) {
-					modal_image.style.width = '100%';
-					modal_image.style.height = 'auto';
-					modal_image.style.maxWidth = target_width;
-				} else if (target_width >= w && target_height > h) {
-					modal_image.style.width = 'auto';
-					modal_image.style.height = '100%';
-					modal_image.style.maxWidth = 'initial';
-				}
-
-				}, 100);
-			});		
-
-			// ------------------------------------
-			//
-			// 以下、スライダー
-			//
-			// ------------------------------------
-
-			// アロー右をクリックした時に
-			arrow_right.addEventListener('click', (e) => {
-
-				// ------------------------------------
-				//
-				// modal_imageの画像を変更する処理
-				//
-				// ------------------------------------
-
-				// 右隣の画像のsrcとカスタムデータ属性（data-text）を取得する
-				const target_changedimg = target_img.parentNode.nextElementSibling.querySelector('img');
-				const target_changedsrc = target_changedimg.getAttribute('src');
-				const target_changedtext = target_changedimg.getAttribute('data-text');
-
-				// モーダルのimgに取得したsrcを追記
-				modal_image.setAttribute('src', target_changedsrc);   
-
-				 // モーダルのtextに取得したdata-textの値を代入する
-				modal_txt.textContent = target_changedtext;  
-
-				// target_imgとtarget_srcの値を更新→アローを押すたびに次の画像が表示される
-				target_img = target_changedimg;  
-				target_src = target_changedimg;	
-
-				// ---------------------------------------------
-				//
-				// ウインドウ幅に応じて画像の表示サイズを変更
-				//
-				// ---------------------------------------------
-
-				// 各要素を取得
-				let tw = target_img.clientWidth;
-				let th = target_img.clientHeight;	
-				let w = window.innerWidth;
-				let h = window.innerHeight;
-				let changedTarget_width = modal_image.clientWidth;
-				let changedTarget_height = modal_image.clientHeight;
-
-				// ウインドウ幅に応じて画像の表示サイズを変える
-				if (changedTarget_width >= w && changedTarget_height < h) {
-					modal_image.style.width = '100%';
-					modal_image.style.height = 'auto';
-					modal_image.style.maxWidth = changedTarget_width;
-				} else if (changedTarget_width >= w && changedTarget_height > h) {
-					modal_image.style.width = 'auto';
-					modal_image.style.height = '100%';
-					modal_image.style.maxWidth = 'initial';
-				}
-
-				// -------------------------------------------------------
-				//
-				// ブラウザ幅を変更した時、画像の幅をリアルタイムで変更	
-				//
-				// -------------------------------------------------------
-
-				let timer = false;			
-
-				// ウインドウ幅を変更した時に
-				window.addEventListener('resize',() => {
-
-					if (timer !== false) {
-						clearTimeout(timer);
-					}
-
-					// 100ミリ秒後に画像サイズを変更
-					timer = setTimeout(() => {
-					
-						tw = target_img.clientWidth;
-						th = target_img.clientHeight;	
-						w = window.innerWidth;
-						h = window.innerHeight;
-						changedTarget_width = modal_image.clientWidth;
-						changedTarget_height = modal_image.clientHeight;
-
-						if (changedTarget_width >= w && changedTarget_height < h) {
-							modal_image.style.width = '100%';
-							modal_image.style.height = 'auto';
-							modal_image.style.maxWidth = changedTarget_width;
-						} else if (changedTarget_width >= w && changedTarget_height > h) {
-							modal_image.style.width = 'auto';
-							modal_image.style.height = '100%';
-							modal_image.style.maxWidth = 'initial';
-						}
-
-					}, 100);
-				});		
-		
+				// 100ミリ秒後に画像サイズを変更
+				timer = setTimeout(changeSize, 100);
+				
 			});
 
-
-
-
-			// 同様に、アロー左をクリックした時に
-			arrow_left.addEventListener('click', (e) => {
-
-				// modal_imageの画像を変更する処理
-				const target_changedimg = target_img.parentNode.previousElementSibling.querySelector('img');
-				const target_changedsrc = target_changedimg.getAttribute('src');
-				const target_changedtext = target_changedimg.getAttribute('data-text');
-
-				modal_image.setAttribute('src', target_changedsrc);
-				modal_txt.textContent = target_changedtext;
-
-				target_img = target_changedimg;
-				target_src = target_changedimg;	
-
-
-				// ウインドウ幅に応じて画像の表示サイズを変更
-				let tw = target_img.clientWidth;
-				let th = target_img.clientHeight;	
-				let w = window.innerWidth;
-				let h = window.innerHeight;
-				let changedTarget_width = modal_image.clientWidth;
-				let changedTarget_height = modal_image.clientHeight;
-
-				if (changedTarget_width >= w && changedTarget_height < h) {
-					modal_image.style.width = '100%';
-					modal_image.style.height = 'auto';
-					modal_image.style.maxWidth = changedTarget_width;
-				} else if (changedTarget_width >= w && changedTarget_height > h) {
-					modal_image.style.width = 'auto';
-					modal_image.style.height = '100%';
-					modal_image.style.maxWidth = 'initial';
-				}
-
-				// ブラウザ幅を変更した時、画像の幅をリアルタイムで変更	
-				window.addEventListener('resize',() => {
-
-					if (timer !== false) {
-						clearTimeout(timer);
-					}
-
-					timer = setTimeout(() => {
-					
-						tw = target_img.clientWidth;
-						th = target_img.clientHeight;	
-						w = window.innerWidth;
-						h = window.innerHeight;
-						changedTarget_width = modal_image.clientWidth;
-						changedTarget_height = modal_image.clientHeight;
-
-						if (changedTarget_width >= w && changedTarget_height < h) {
-							modal_image.style.width = '100%';
-							modal_image.style.height = 'auto';
-							modal_image.style.maxWidth = changedTarget_width;
-						} else if (changedTarget_width >= w && changedTarget_height > h) {
-							modal_image.style.width = 'auto';
-							modal_image.style.height = '100%';
-							modal_image.style.maxWidth = 'initial';
-						}
-						
-					}, 100);
-				});		
-		
-
-			});
 		});
 	}
 
-
-	// モーダル閉じるボタン
-	modal_close.addEventListener('click', () => {
+	// モーダルの閉じるボタン
+	modalClose.addEventListener('click', () => {
 		modal.classList.remove('active');
-		location.reload();
 	});
 
 }
+
+
+
 

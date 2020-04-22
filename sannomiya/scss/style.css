@@ -59,7 +59,14 @@ fieldset, img {
   border: 0;
 }
 
+#modal {
+  opacity: 0;
+  transition: opacity 0.3s ease 0;
+}
+
 #modal.active {
+  transition: opacity 0.3s ease 0;
+  opacity: 1;
   padding: 3rem 0;
   position: fixed;
   height: 100%;
@@ -96,7 +103,7 @@ fieldset, img {
   }
 }
 
-#modal.active .modal-image_wrapper {
+#modal.active #modal-image_wrapper {
   height: 100%;
   width: auto;
   width: 100%;
@@ -104,7 +111,7 @@ fieldset, img {
   position: relative;
 }
 
-#modal.active .modal-image_wrapper #modal-image {
+#modal.active #modal-image_wrapper img {
   display: block;
   margin: 0 auto;
   height: 100%;
@@ -147,6 +154,10 @@ fieldset, img {
   }
 }
 
+#modal.active #arrow-left.disable {
+  opacity: 0;
+}
+
 #modal.active #arrow-right {
   right: 4rem;
   transform: rotate(-90deg);
@@ -159,6 +170,10 @@ fieldset, img {
     right: 0.4rem;
     bottom: 1rem;
   }
+}
+
+#modal.active #arrow-right.disable {
+  opacity: 0;
 }
 
 #modal.active #modal-txt {

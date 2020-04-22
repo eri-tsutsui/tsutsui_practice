@@ -4,94 +4,108 @@
 @import "mixin/_mixin";
 @import "setting/_variables";
 
-#modal.active {
-	padding: 3rem 0;
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0, 0, 0, 0.9);
-	z-index: 300;
-	@include mq('sp') {
-		padding: 6rem 0;
-	}
-	#modal-close {
-		position: absolute;
-		right: 4rem;
-		top: 4rem;
-		padding: 1rem;
-		user-select: none;
-		z-index: 500;
-		&:hover {
-			opacity: 0.3;
-			cursor: pointer;
-		}
-		@include mq('sp') {
-			right: 1.2rem;
-			top: 1.2rem;
-			padding: 1rem;
-		}
-	}
-	.modal-image_wrapper {
+#modal {
+	opacity: 0;
+	transition: opacity 0.3s ease 0;
+	&.active { 
+		transition: opacity 0.3s ease 0;
+		opacity: 1;
+		padding: 3rem 0;
+		position: fixed;
 		height: 100%;
-		width: auto;
 		width: 100%;
-		margin: 0 auto;
-		position: relative;
-		#modal-image {
-			display: block;
-			margin: 0 auto;
+		background-color: rgba(0, 0, 0, 0.9);
+		z-index: 300;
+		@include mq('sp') {
+			padding: 6rem 0;
+		}
+		#modal-close {
+			position: absolute;
+			right: 4rem;
+			top: 4rem;
+			padding: 1rem;
+			user-select: none;
+			z-index: 500;
+			&:hover {
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			@include mq('sp') {
+				right: 1.2rem;
+				top: 1.2rem;
+				padding: 1rem;
+			}
+		}
+		#modal-image_wrapper {
 			height: 100%;
 			width: auto;
+			width: 100%;
+			margin: 0 auto;
+			position: relative;
+			img {
+				display: block;
+				margin: 0 auto;
+				height: 100%;
+				width: auto;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+		#arrow-left, #arrow-right {
 			position: absolute;
 			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+			margin-top: -1.5rem;
+			&:hover {
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			@include mq('sp') {
+				top: auto;
+			}
 		}
-	}
-	#arrow-left, #arrow-right {
-		position: absolute;
-		top: 50%;
-		margin-top: -1.5rem;
-		&:hover {
-			opacity: 0.3;
-			cursor: pointer;
+		#arrow-left {
+			left: 4rem;
+			transform: rotate(90deg);
+			user-select: none;
+			padding: 1rem;
+			@include mq('sp') {
+				bottom: 1rem;
+				right: 3.5rem;
+				left: auto;
+			}
+			&.disable {
+				opacity: 0;
+			}
 		}
-		@include mq('sp') {
-			top: auto;
+		#arrow-right {
+			right: 4rem;
+			transform: rotate(-90deg);
+			user-select: none;
+			padding: 1rem;
+			@include mq('sp') {
+				right: 0.4rem;
+				bottom: 1rem;
+			}
+			&.disable {
+				opacity: 0;
+			}
 		}
-	}
-	#arrow-left {
-		left: 4rem;
-		transform: rotate(90deg);
-		user-select: none;
-		padding: 1rem;
-		@include mq('sp') {
-			bottom: 1rem;
-			right: 3.5rem;
-			left: auto;
-		}
-	}
-	#arrow-right {
-		right: 4rem;
-		transform: rotate(-90deg);
-		user-select: none;
-		padding: 1rem;
-		@include mq('sp') {
-			right: 0.4rem;
-			bottom: 1rem;
-		}
-	}
-	#modal-txt {
-		position: absolute;
-		bottom: 2rem;
-		left: 2rem;
-		font-size: 1.2rem;
-		color: #ffffff;
-		@include mq('sp') {
-			font-size: 1rem;
+		#modal-txt {
+			position: absolute;
+			bottom: 2rem;
+			left: 2rem;
+			font-size: 1.2rem;
+			color: #ffffff;
+			@include mq('sp') {
+				font-size: 1rem;
+			}
 		}
 	}
 }
+
+
 
 
 .container {
