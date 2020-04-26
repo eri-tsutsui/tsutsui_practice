@@ -1,0 +1,24 @@
+//いい感じの上下運動
+
+1.setIntervalとrequestAnimationFrameの違い
+setInterval:指定時間ごとにアニメーション
+requestAnimationFrame：ブラウザの描画タイミングごとアニメーション
+＝＞再描画が頻繁に行われる場合good
+ちなみに、requestAnimationFrameはWindowのメソッド
+
+2.TweenMax
+TweenMax.set(target, {
+	x: center.x,
+	y: center.y + offsetY
+});
+
+3.clientWidth, clientHeight
+
+4.ラジアン
+2πrad = 360°
+1πrad = 1/ 180 °
+
+5.三角関数
+Math.PI 円周率
+Math.cos(val) コサイン -1から1までを返す
+Math.sin(val) サイン -1から1までを返す
