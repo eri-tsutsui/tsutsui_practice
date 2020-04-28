@@ -14,7 +14,6 @@
 		{ang:random(0,360),speed:random(1,3)},
 	];
 
-
 	// 毎フレームごとに実行
 	window.requestAnimationFrame(update);
 
@@ -31,13 +30,16 @@
 			y: sh * 0.5 - target.clientHeight * 0.5
 		}
 
+		// スケールランダム
 		const scaleX = map(Math.sin(radian(params[0].ang)), 1, 2, -1, 1); 
 		const scaleY = map(Math.cos(radian(params[1].ang)), 1, 2, -1, 1);
 
+		// 回転ランダム
 		const rotX = map(Math.cos(radian(params[2].ang)), -90, 90, -1, 1);
 		const rotY = map(Math.sin(radian(params[3].ang)), -90, 90, -1, 1);
 		const rotZ = map(Math.cos(radian(params[4].ang)), -90, 90, -1, 1);
 
+		// perspective値にMath.sin(), Math.cos()を使用
 		wrapper.style.perspective = map(Math.cos(radian(params[5].ang)), 10, 500, -1, 1) + 'px';
 
 		// 動く範囲

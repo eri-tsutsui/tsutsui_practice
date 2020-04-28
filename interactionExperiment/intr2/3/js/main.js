@@ -28,17 +28,17 @@
 		// この-1〜1の値をいろいろな部分に使う
 		const val = Math.sin(rad);
 
-		// スケール(マイナスにならないようにする＝＞0.1~2)
+		// スケール(範囲変換：0.1〜2) 
 		const scale = map(val, 0.1, 2, -1, 1);
 
-		// 角度（-90 < rot < 90）
+		// 角度（範囲変換：-90 < rot < 90）
 		const rot = map(val, -90, 90, -1, 1);
 
 		TweenMax.set(target, {
 			x: center.x,
 			y: center.y,
 			scale: scale,
-			rotationZ: rot //Z軸を基準に回転
+			rotationZ: rot //Z軸上を回転しながら移動 もしzだとz軸上を回転せずに移動するだけ
 		});
 
 		angle += 2;
@@ -56,7 +56,7 @@
 		return val * 180 / Math.PI;
 	}
 
-	//範囲変換
+	//範囲変換（ある範囲における数値を別の範囲における数値に変換する）
 	// @val     : 変換したい値
 	// @toMin   : 変換後の最小値
 	// @toMax 	: 変換後の最大値
@@ -72,5 +72,6 @@
 		const p = (toMax - toMin) / (fromMax - fromMin);
 		return ((val - fromMin) * p) + toMin;
 	}
+
 
 }

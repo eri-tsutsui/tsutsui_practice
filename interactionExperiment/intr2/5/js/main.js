@@ -2,7 +2,7 @@
 {
 	const dots = document.querySelectorAll('.dot');
 	let angle1 = 0;
-	let angle2 = 0;
+	// let angle2 = 0;
 
 	// 毎フレームごとに実行
 	window.requestAnimationFrame(update);

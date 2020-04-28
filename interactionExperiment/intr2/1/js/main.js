@@ -19,15 +19,15 @@
 			y: sh * 0.5 - target.clientHeight * 0.5
 		}
 
-		// 動く範囲 
+		// 動く範囲(描く円の大きさ) cos, sin は半径1の円弧
 		const radius = sh * 0.25;
 
 		// angleをラジアンに変換
 		const rad = radian(angle);
 
 		// ↓までで円の動きの公式として覚える
-		const x = center.x + Math.sin(rad) * radius; 
-		const y = center.y + Math.cos(rad) * radius;
+		const x = center.x + Math.sin(rad) * radius;  //sinはangleが大きくなるにつれ、増えてくのでx座標は最初増えていく
+		const y = center.y + Math.cos(rad) * radius;  //cosはangleが大きくなるにつれ、減ってくのでy座標は最初減っていく
 
 		TweenMax.set(target, {
 			x: x, 
@@ -35,6 +35,7 @@
 		});
 
 		angle += 2;
+
 
 		window.requestAnimationFrame(update);
 	}

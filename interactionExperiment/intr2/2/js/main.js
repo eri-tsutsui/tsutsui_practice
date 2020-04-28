@@ -29,7 +29,7 @@
 		// radiusをかけることで、画面中央から-radius ~ radiusの範囲で行ったり来たりする
 
 		TweenMax.set(target, {
-			x: center.x + Math.sin(rad) * radius, // 真ん中の表から-radius ~ radiusの範囲でX軸上を行ったりきたりする
+			x: center.x + Math.sin(rad) * radius, // 真ん中の表から-radius ~ radiusの範囲でX軸上を行ったりきたりする 
 			y: center.y, 
 			z: Math.cos(rad) * radius // -radius ~ radiusの範囲でz軸を行ったりきたり
 		});

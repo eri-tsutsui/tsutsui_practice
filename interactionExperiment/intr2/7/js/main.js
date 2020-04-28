@@ -26,20 +26,23 @@
 		const sw = window.innerWidth;
 		const sh = window.innerHeight;
 
+		// 奥行きをランダムにチェンジ
 		wrapper.style.perspective = map(Math.cos(radian(params[5].ang)), 50, 500, -1, 1) + 'px';
 
 		for (let i = 0; i < dots.length; i ++) {
 
-			// 画面の真ん中基準にする		
+			// 画面の真ん中基準にする		５
 			const center = {
+				// s軸上には等間隔でオブジェクトを配置
 				x: sw * (i / dots.length),
 				y: sh * 0.5 + Math.sin(radian(params[9].ang + i * (360 / dots.length))) * (sh * 0.3)
 			}
 
-
+			// （一つのオブジェクトの）scaleをランダムに変化
 			const scaleX = map(Math.sin(radian(params[0].ang)), 1, 2, -1, 1);
 			const scaleY = map(Math.cos(radian(params[1].ang)), 1, 2, -1, 1);
 
+			// ランダムに回転
 			const rotX = map(Math.cos(radian(params[2].ang)), -90, 90, -1, 1);
 			const rotY = map(Math.sin(radian(params[3].ang)), -90, 90, -1, 1);
 			const rotZ = map(Math.cos(radian(params[4].ang)), -90, 90, -1, 1);
@@ -49,7 +52,6 @@
 			const ofX = Math.cos(radian(params[6].ang)) * radius; //x軸方向の動く範囲
 			const ofY = Math.sin(radian(params[7].ang)) * radius; //y軸方向の動く範囲
 
-
 			TweenMax.set(dots[i], {
 				x:center.x + ofX,
 				y:center.y + ofY,
@@ -57,8 +59,9 @@
 				scaleY:scaleY,
 				rotationX:rotX,
 				rotationY:rotY,
-				rotationX:rotZ,
+				rotationZ:rotZ,
 			});
+
 		}
 
 		params.forEach(param => {

@@ -47,6 +47,7 @@
 			z: z
 		});
 
+		// ランダムに値を加える
 		paramZ.angle += paramZ.speed;
 		paramX.angle += paramX.speed;
 		paramY.angle += paramY.speed;
