@@ -4,6 +4,18 @@
 	const dots = document.querySelectorAll('.dot');
 	let tgList = [];
 
+	// マウスの位置
+	let mouse = {
+		x: 0,
+		y: 0
+	}
+
+	// スピード調整用(回転量)
+	let speedOffset = {
+		x: 1,
+		y: 1
+	}
+
 	// 初期設定
 	init();
 
@@ -16,12 +28,14 @@
 			const sh = window.innerHeight;
 
 			// 位置のばらつき
-			const xrange = 0.1;
+			const xrange = 0.3;
 			const yrange = 0.3;
-			const zrange = 0.5;
+			const zrange = 0.3;
 
 			// 速度
 			const xspeed = 1.0;
+			const yspeed = 1.0;
+			const zspeed = 1.0;
 
 			// 全体のはやさ
 			const allSpeed = 0.75;
@@ -39,8 +53,13 @@
 				y: random(-sh * yrange, sh * yrange),
 				z: random(-sh * zrange, sh * zrange),
 				speedX: random(1, 4) * xspeed * allSpeed,
+				speedY: random(1, 4) * yspeed * allSpeed,
+				speedZ: random(1, 4) * zspeed * allSpeed,
 				scale: random(scaleMin, scaleMax)
 			});
+
+			//マウスを動かしたとき_eMouseMove
+			window.addEventListener('mousemove', _eMouseMove);
 		}
 	}
 
@@ -48,10 +67,21 @@
 	window.requestAnimationFrame(update);
 
 	function update () {
+
+		// X, Y軸回転量をマウス位置で調整(中心ほど遅くなる), mouse.x = 0, mouse.y = 0が初期値
+		const speedOffsetX = map(mouse.y, -2, 2, 0, window.innerHeight); // window.innerHeightは画面の一番下 //マウスの位置0について、-2 < x < 2の範囲で再定義-> -2
+		const speedOffsetY = map(mouse.x, -2, 2, 0, window.innerWidth); // window.innerWidthは画面の一番右端 //マウスの位置0について、-2 < y < 2の範囲で再定義-> -2
+		const ease = 0.1;
+
+		// speedOffset.xとspeedOffset.yの値はどんどん小さくなる
+		speedOffset.x += (speedOffsetX - speedOffset.x) * ease; // speedOffset.xの初期値は1 , speedOffsetXの初期値は-2
+		speedOffset.y += (speedOffsetY - speedOffset.y) * ease; // speedOffset.yの初期値は1 , speedOffsetYの初期値は-2
 		
 		for(let i = 0; i < tgList.length; i ++) {
 			const o = tgList[i];
-			rotateX(o, radian(o.speedX));
+			rotateX(o, radian(o.speedX * speedOffset.x));
+			rotateY(o, radian(o.speedY * speedOffset.y));
+			rotateZ(o, radian(o.speedZ));
 
 			TweenMax.set(o.el, {
 				scale: o.scale,
@@ -65,23 +95,10 @@
 
 	}
 
-	// 度からラジアンに変更
-	// @val：度
-	function radian(val) {
-		return val * Math.PI / 180;
-	}
-
-	// ラジアンから度に変更
-	// @val：ラジアン
-	function degree(val) {
-		return val * 180 / Math.PI;
-	}
-	
-	// ----------------------------------------
-	// minからmaxまでランダム
-	// ----------------------------------------
-	function random(min, max) {
-		return Math.random() * (max - min) + min;
+	// マウスの位置取得
+	function _eMouseMove(e) {
+		mouse.x = e.clientX; // clientX = x座標
+		mouse.y = e.clientY; // clientY = y座標
 	}
 
 
@@ -102,15 +119,6 @@
 		obj.z = z;
 
 	}
-
-	// メモ（https://qiita.com/FumioNonaka/items/c246aca8f1b1b03a66be）
-	// x軸とy軸からなる直交座標(「デカルト座標系」)における任意の点(x,y)(x,y)を、原点(0,0)(0,0)から角度θθ回した座標(x′,y′)(x′,y′)はつぎの式で求められます。
-	// x′=xcosθ−ysinθ
-	// y′=xsinθ+ycosθ
-	// 回転行列
-	// angle度回転させた後の座標を求める公式
-
-
 
 	// ----------------------------------------
 	// Y軸の回転
@@ -148,5 +156,43 @@
 
 	}
 
+	// 度からラジアンに変更
+	// @val：度
+	function radian(val) {
+		return val * Math.PI / 180;
+	}
+
+	// ラジアンから度に変更
+	// @val：ラジアン
+	function degree(val) {
+		return val * 180 / Math.PI;
+	}
+	
+	// ----------------------------------------
+	// minからmaxまでランダム
+	// ----------------------------------------
+	function random(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+
+
+	// ----------------------------------------
+	// 範囲変換
+	// @val     : 変換したい値
+	// @toMin   : 変換後の最小値
+	// @toMax   : 変換後の最大値
+	// @fromMin : 変換前の最小値
+	// @fromMax : 変換前の最大値
+	// ----------------------------------------
+	function map(val, toMin, toMax, fromMin, fromMax) {
+		if(val <= fromMin) {
+			return toMin;
+		}
+		if(val >= fromMax) {
+			return toMax;
+		}
+		const p = (toMax - toMin) / (fromMax - fromMin);
+			return ((val - fromMin) * p) + toMin;
+	}
 
 }

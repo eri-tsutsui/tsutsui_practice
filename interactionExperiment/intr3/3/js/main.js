@@ -16,12 +16,12 @@
 			const sh = window.innerHeight;
 
 			// 位置のばらつき
-			const xrange = 0.1;
+			const xrange = 0.3;
 			const yrange = 0.3;
 			const zrange = 0.5;
 
 			// 速度
-			const xspeed = 1.0;
+			const zspeed = 1.0;
 
 			// 全体のはやさ
 			const allSpeed = 0.75;
@@ -38,7 +38,7 @@
 				x: random(-sw * xrange, sw * xrange),
 				y: random(-sh * yrange, sh * yrange),
 				z: random(-sh * zrange, sh * zrange),
-				speedX: random(1, 4) * xspeed * allSpeed,
+				speedZ: random(1, 4) * zspeed * allSpeed,
 				scale: random(scaleMin, scaleMax)
 			});
 		}
@@ -51,7 +51,7 @@
 		
 		for(let i = 0; i < tgList.length; i ++) {
 			const o = tgList[i];
-			rotateX(o, radian(o.speedX));
+			rotateZ(o, radian(o.speedZ));
 
 			TweenMax.set(o.el, {
 				scale: o.scale,
@@ -102,15 +102,6 @@
 		obj.z = z;
 
 	}
-
-	// メモ（https://qiita.com/FumioNonaka/items/c246aca8f1b1b03a66be）
-	// x軸とy軸からなる直交座標(「デカルト座標系」)における任意の点(x,y)(x,y)を、原点(0,0)(0,0)から角度θθ回した座標(x′,y′)(x′,y′)はつぎの式で求められます。
-	// x′=xcosθ−ysinθ
-	// y′=xsinθ+ycosθ
-	// 回転行列
-	// angle度回転させた後の座標を求める公式
-
-
 
 	// ----------------------------------------
 	// Y軸の回転
