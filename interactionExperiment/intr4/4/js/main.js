@@ -12,7 +12,7 @@
 		clientY:0
 	};
 
-	const tg = document.querySelectorAll('.js-tg');
+	const inner = document.querySelectorAll('.inner');
 
 	init();
 
@@ -23,22 +23,20 @@
 		mouse.x = mouse.clientX = window.innerWidth * 0.5;
 		mouse.y = mouse.clientY = window.innerHeight * 0.5;
 
-		for (let i = 0; i < tg.length; i ++) {
+		for (let i = 0; i < inner.length; i ++) {
 
-			const obj = {
-				rate: 0,            // 最終目標値までの進捗度
-				posTg: {x:0, y:0},  // 最終目標位置
-				posNow: {x:0, y:0}, // 現在位置
-				el: tg[i],
-				scale: 1,
-				angle: 0
+			const o = {
+				rate: 0,            
+				now: {x:0, y:0},    
+				tg1: {x:0, y:0},    
+				tg2: {x:0, y:0},    
+				color:chroma.random().css(),
+				edgeColor:chroma.random().css(),
+				el: inner[i],
 			}
 
-			// objに値を設定し、球体のアニメーションのスピードをインデックス番号により少しずらす
-			reset(obj, i * 0.1);
-
-		   // param配列の中に上記の情報をいれる
-			param.push(obj);
+			reset(o);
+			param.push(o);
 			
 		}
 
@@ -53,28 +51,32 @@
 	}
 
 	// リセット
-	function reset (obj, delay) {
+	function reset (obj) {
 
-		const sw = window.innerWidth
-  		const sh = window.innerHeight
+		const sw = window.innerWidth;
+  		const sh = window.innerHeight;
 
 		// 値をセット
 		obj.rate = 0; //進捗
-		obj.posNow.x = random(0, sw); //現在位置
-		obj.posNow.y = random(0, sh);
-		obj.posTg.x = random(0, sw); //最終目標値
-		obj.posTg.y = random(0, sh);
-		obj.scale = random(0.5, 1.5);
-		obj.angle = 0;
+		obj.now.x = random(0, sw); //現在位置
+		obj.now.y = sh;
+
+		obj.tg1.x = random(0, sw); //最終目標値
+		obj.tg1.y = sh * 0.5; 
+
+		obj.tg2.x = sw * 0.5; 
+		obj.tg2.y = 0;
+
+		obj.color = chroma.random().css();
+		obj.edgeColor = chroma(obj.color).brighten(10).css();
 
 		// rate値をアニメーション（0から1に増やす）
-		const duration = random(0.5, 1.5);
+		const duration = 1.5;
 		TweenMax.killTweensOf(obj);
 		TweenMax.to(obj, duration, {
 			rate: 1, // 0から1に増やす
-			angle: 180, // 0から180に増やす
 			ease: Power1.easeOut,
-			delay: delay
+			delay: 0
 		});
 
 	}
@@ -97,29 +99,30 @@
 			// 進捗度を使って、寄り道しつつ最終的にクリックした位置へ行くように
 			// 寄り道位置はマウス
 
-			const obj = param[i];
+			const o = param[i];
 
-			if (obj.rate > 0) {
-				const tgX2 = map(mouse.x, -sw * 0.5, sw * 1.5, 0, sw);
-				const tgY2 = map(mouse.y, -sh * 0.5, sh * 1.5, 0, sh);
+			const tgX = o.tg1.x * (1 - o.rate) + o.tg2.x * o.rate;
+			const tgY = o.tg1.y * (1 - o.rate) + o.tg2.y * o.rate;
 
-				// rateが1に近くにつれ、posTg(最終目標値 0〜sw)に近く
-				const tgX = (tgX2 * (1 - obj.rate)) + (obj.posTg.x * obj.rate);
-				const tgY = (tgY2 * (1 - obj.rate)) + (obj.posTg.y * obj.rate);
-				obj.posNow.x += (tgX - obj.posNow.x) * ease;
-				obj.posNow.y += (tgY - obj.posNow.y) * ease;
-			}
+			o.now.x += (tgX - o.now.x) * ease;
+			o.now.y += (tgY - o.now.y) * ease;
 
-			TweenMax.set(obj.el, {
-				x: obj.posNow.x,
-				y:obj.posNow.y,
-				scale:obj.scale,
-				opacity:map(Math.sin(radian(obj.angle)), 0, 1, 0, 1)
+			const range = 90;
+
+			const ang = (o.now.x, -range, range, 0, sw);
+
+			const pct = 100 - (o.now.y / sh) * 100;
+
+			const grad = 'linear-gradient(' + ang + 'deg, ' + o.edgeColor + ' 0%, ';
+			grad += o.color + ' ' + pct + '%, ';
+			grad += o.edgeColor + ' 100%)';
+
+			o.el.css( {
+				background: grad
 			});
 
-		    // だいたい1に近づいたら目標値変更
-			if(Math.abs(1 - obj.rate) < 0.005) {
-				reset(obj, random(0, 0.5));
+			if(o.rate >= 1) {
+				reset(o);
 			}
 
 		}
@@ -128,22 +131,6 @@
 
 	}
 
-
-	// ----------------------------------------
-	// イベント 画面クリック
-	// ----------------------------------------
-
-	function _eClick(e) {
-		rate = 0;
-
-		if(e == null) {
-			clickPos.x = random(0, window.innerWidth);
-			clickPos.y = random(0, window.innerHeight);
-		} else {
-			clickPos.x = e.clientX;
-			clickPos.y = e.clientY;
-		}
-	}
 
 	// -------------------------------------
 	// @val: 度
@@ -187,7 +174,5 @@
 		const p = (toMax - toMin) / (fromMax - fromMin);
 		return ((val - fromMin) * p) + toMin;
 	}
-
-
 
 }
