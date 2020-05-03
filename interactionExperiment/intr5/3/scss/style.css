@@ -74,14 +74,15 @@ body, html {
   height: 100%;
   overflow: hidden;
   background-color: #1b2920;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .mv .obj {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #c73f26;
-  mix-blend-mode: difference;
+  width: 70%;
+  height: 70%;
 }
 
 .attention {
@@ -100,7 +101,7 @@ body, html {
 
 .dummy_height {
   position: absolute;
-  top: 3000px;
+  top: 5000px;
   width: 1px;
   height: 1px;
 }
