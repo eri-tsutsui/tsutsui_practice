@@ -1,0 +1,45 @@
+// scss
+@import "base/_base";
+@import "base/_reset";
+@import "mixin/_mixin";
+@import "setting/_variables";
+
+body, html {
+	width: 100%;
+	height: 100%;
+	background-color: #f1cdd0;
+	.text {
+		position: absolute;
+		left: 0;
+		bottom: 1.5vw;
+		font-size: 1.5vw;
+		font-weight: bold;
+		font-style: italic;
+		text-align: center;
+		width: 100%;
+	}
+}
+
+.mv {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	.item {
+		position: relative;
+		width: 100%;
+        background-color: #262558;
+        -webkit-user-select: none;
+		color: #ffffff;
+		font-size: 3vw;
+		font-weight: bold;
+		text-align: center;
+	}
+
+}

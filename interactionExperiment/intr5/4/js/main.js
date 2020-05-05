@@ -1,66 +1,81 @@
 'use strict';
 {
-	const span = document.querySelectorAll('span');
 	const arr = [];
+	const span = document.querySelectorAll('span');
+	const mv = document.querySelector('.mv');
 
 	init();
 
-	// 初期設定
-	function init () {
-
+	function init() {
 		for (let i = 0; i < span.length; i ++) {
 			const el = span[i];
 
-			// 移動の方向をバラバラ
-			let kakeY = 1;
+			let kake = 1;
 			if (i % 2 == 0) {
-				kakeY *= -1;
+				kake *= -1;
 			}
 
-			// spanタグの情報
 			const o = {
-				kakeY:kakeY,
-				y: 0,
-				el: el
+				kake:kake,
+				p:0,
+				el:el
 			}
 
-			// 上の情報を持つspanを配列にいれる
 			arr.push(o);
 		}
+	} 
 
-	}
-
-	// 毎フレーム実行
 	window.requestAnimationFrame(update);
 
-	function update () {
-		
-		// ステージサイズ
+	function update() {
 		const sw = window.innerWidth;
 		const sh = window.innerHeight;
 		const h = document.documentElement.scrollHeight;
 
 		// スクロール位置
 		const scroll = window.pageYOffset;
+		// var scrollTop = window.scrollY;
 
 		// スクロール進捗率
 		const scrollP = scroll / (h - sh);
 
+		// 全体の背景色
+		TweenMax.set(mv, {
+			backgroundColor:chroma.mix(0x1b2920, 0xffffff, scrollP).css()
+		});
 
 		for (let i = 0; i < arr.length; i ++) {
+
 			const o = arr[i];
 
-			// スクロール進捗率を順番に分配する
+			// スクロール進捗率を順番に分配してく
 			const size = 1 / arr.length;
-			const offset = 0.8; // 目標地点の到達する前に次のアルファベットが現れる
-			const p = map(scrollP, 0, 1, size * offset * i, size * i + size); // インデックス番号により進捗率が異なるので相対的な値に変更　例えば、[1]->0.08〜0.2, [2]->0.16~0.3
+			const offset = 0.8; // ちょっと食い気味に入ってくるように
+			const p = map(scrollP, 0, 1, size * offset * i, size * i + size);
 
-			const tgY = o.kakeY * sh * 0.5 * (1 - p);
-			o.y += (tgY - o.y) * 0.1;
+			//複数動かしたいのでpをイージング
+			o.p += (p - o.p) * 0.1;
 
+			// 位置
+			const y = o.kake * sh * 0.5 * (1 - o.p);
+
+			// 角度
+			const rotX = o.kake * 90 * (1 - o.p);
+			const rotY = o.kake * 360 * (1 - o.p);
+			const rotZ = o.kake * 60 * (1 - o.p);
+
+			// スケール?
+			const scale = map(o.p, 3, 1, 0, 1);
+
+			//DOMに反映
 			TweenMax.set(o.el, {
-				y:o.y,
-				opacity:p //最初は見えないようにするため
+				rotationX:rotX,
+				rotationY:rotY,
+				rotationZ:rotZ,
+				sccale:scale,
+				y:y,
+				opacity:o.p,
+				color:chroma.mix(0x1b2b21, 0xb93133, o.p).css() // 色
 			});
 
 		}

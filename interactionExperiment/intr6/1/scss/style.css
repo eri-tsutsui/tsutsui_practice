@@ -62,8 +62,7 @@ fieldset, img {
 body, html {
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
+  background-color: #f2f2f2;
 }
 
 .mv {
@@ -73,43 +72,29 @@ body, html {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #1b2920;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: .1vw;
 }
 
-.mv .text {
-  font-size: 0;
-  font-style: italic;
-  color: #FFF;
+.mv .item {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: #83dfed;
+  flex-grow: 1;
 }
 
-.mv .text span {
-  font-size: 12vw;
-  display: inline-block;
-  text-decoration: underline;
-  color: #FFF;
+.mv .item:not(:last-child) {
+  margin-bottom: .1vw;
 }
 
-.attention {
-  position: fixed;
+.mv .item .inner {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  color: #FFF;
-  font-weight: bold;
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  letter-spacing: 0.05em;
-}
-
-.dummy_height {
-  position: absolute;
-  top: 5000px;
-  width: 1px;
-  height: 1px;
+  background-color: #417dde;
+  transform-origin: 0% 50%;
 }

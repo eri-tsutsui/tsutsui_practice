@@ -1,0 +1,42 @@
+// scss
+@import "base/_base";
+@import "base/_reset";
+@import "mixin/_mixin";
+@import "setting/_variables";
+
+body, html {
+	width: 100%;
+	height: 100%;
+	background-color: #f2f2f2;
+}
+
+.mv {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	padding: .1vw;
+	.item {
+		position: relative;
+		display: block;
+		width: 100%;
+		background-color: #83dfed;
+		flex-grow: 1;
+		&:not(:last-child) {
+			margin-bottom: .1vw;
+		}
+		.inner {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #417dde;
+			transform-origin: 0% 50%;
+		}
+	}
+}
