@@ -1,0 +1,35 @@
+// scss
+@import "base/_base";
+@import "base/_reset";
+@import "mixin/_mixin";
+@import "setting/_variables";
+
+// スライダー
+
+// content
+.content {
+	.inner {
+		max-width: 600px;
+		width: 100%;
+		margin: 0 auto;
+		padding-top: 100px;
+		.content-txt {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.footer {
+	height: 50px;
+	width: 100%;
+	background-color: #ccc;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	#arrow {
+		display: inline-block;
+		transform: rotate(180deg);
+		cursor: pointer;
+	}
+}

@@ -1,11 +1,7 @@
 //タブの考え方
-タブボタンにリンクを設定し、リンク先をタブパネルとする
 
 //ポイント
-1.hrefを取得し、それに基づくパネルの取得
-const showWork = document.querySelector(idLink);
 
-※idLinkは’で囲む必要なし！
 
 
 

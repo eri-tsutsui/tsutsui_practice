@@ -1,0 +1,60 @@
+// scss
+@import "base/_base";
+@import "base/_reset";
+@import "mixin/_mixin";
+@import "setting/_variables";
+
+body, html {
+	width: 100%;
+	height: 100%;
+	background-color: #3c3c3e; 
+}
+
+.mv {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	transform-style: preserve-3d;
+	perspective: 50px;
+	.item {
+		font-size: 5vw;
+		font-weight: bold;
+	}
+	.is-font1 {
+		font-family: 'Roboto', sans-serif;
+	}
+	.is-font2 {
+        font-family: 'Gaegu', cursive;
+	}
+	.is-font3 {
+        font-family: 'Merienda', cursive;
+	}
+	.is-font4 {
+        font-family: 'Oswald', sans-serif;
+	}
+	.is-font5 {
+        font-family: 'Open Sans Condensed', sans-serif;
+	}
+	.is-font6 {
+        font-family: 'Markazi Text', serif;
+	}
+	.is-font7 {
+        font-family: 'Titillium Web', sans-serif;
+	}
+	.is-font8 {
+        font-family: 'Chela One', cursive;
+	}
+	.is-font9 {
+        font-family: 'Indie Flower', cursive;
+	}
+	.is-font10 {
+        font-family: 'Anton', sans-serif;
+	}
+}

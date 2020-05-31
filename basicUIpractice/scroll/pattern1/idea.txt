@@ -1,0 +1,11 @@
+//スティッキーヘッダーの考え方
+ヘッダーとトップまでの距離を、スクロール量がその距離をうわまった時に.stickyクラスを付与する
+
+//
+1.scroll()はWindowのメソッド
+指定した位置にスクロールして移動することができる
+
+
+//参考資料
+https://www.to-r.net/media/smooth_scrolling_2019/
+https://lab.syncer.jp/Web/API_Interface/Reference/IDL/Window/scroll/
